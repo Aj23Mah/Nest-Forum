@@ -7,7 +7,6 @@ import { User, UserType } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
-
   constructor(
     @InjectModel(User.name)
     private readonly userModel: Model<UserType>,
@@ -17,7 +16,7 @@ export class UserService {
       firstName: createUserDto.firstName,
       lastName: createUserDto.lastName,
       status: createUserDto.status,
-    })
+    });
   }
 
   findAll() {
@@ -33,10 +32,10 @@ export class UserService {
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.findByIdAndUpdate(id, {...UpdateUserDto,});
+    return this.userModel.findByIdAndUpdate(id, { ...UpdateUserDto });
   }
 
   remove(id: string) {
-    return this.userModel.deleteOne({_id: id});
+    return this.userModel.deleteOne({ _id: id });
   }
 }
